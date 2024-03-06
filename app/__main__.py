@@ -1,6 +1,11 @@
+import os
 import uvicorn
 
-from .import app, PORT, LOG_LEVEL
+from . import app
+
+
+PORT = int(os.environ.get("PORT", 8000))
+LOG_LEVEL = int(os.environ.get("LOG_LEVEL", 20))
 
 
 uvicorn.run(
