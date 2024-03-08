@@ -9,8 +9,7 @@ services:
     environment:
       PORT: ${PORT}
       LOG_LEVEL: ${LOG_LEVEL}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_URI: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
     healthcheck:
       disable: true
       test: ['CMD-SHELL', 'curl -s http://localhost:${PORT}/check-health | grep ''"Not Found"''']
