@@ -10,12 +10,6 @@ services:
       PORT: ${PORT}
       LOG_LEVEL: ${LOG_LEVEL}
       DB_URI: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
-    healthcheck:
-      disable: true
-      test: ['CMD-SHELL', 'curl -s http://localhost:${PORT}/check-health | grep ''"Not Found"''']
-      interval: 2s
-      timeout: 2s
-      retries: 3
     depends_on:
       postgres:
         condition: service_healthy
