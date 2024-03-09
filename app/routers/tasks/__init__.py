@@ -8,8 +8,9 @@ router = APIRouter(prefix='/task')
 
 
 @router.post('')
-async def create_task(body: RequestBodyPost) -> ResponseBodyPost:
-    return await handle_post(body)
+async def create_task(
+        body: RequestBodyPost, request: Request) -> ResponseBodyPost:
+    return await handle_post(body, request)
 
 
 @router.get('')

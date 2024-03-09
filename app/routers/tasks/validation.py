@@ -1,23 +1,13 @@
-from aiopg import Cursor
 from pydantic import BaseModel
 from typing import Optional
 
-
-class BaseDataModel(BaseModel):
-
-    @classmethod
-    async def from_cursor(cls, cursor: Cursor, limit: int = None) -> list:
-        rows = await cursor.fetchall()
-        columns = [desc[0] for desc in cursor.description]
-        dict_results = [dict(zip(columns, row)) for row in rows]
-        model_objects = [cls(**item) for item in dict_results]
-        return model_objects
+from ...models import BaseDataModel
 
 
 class Task(BaseDataModel):
-    id: Optional[int]
+    id: Optional[int] = None
     name: str
-    completion_status: bool
+    completion_status: Optional[bool] = False
 
 
 class RequestBodyPost(Task):
