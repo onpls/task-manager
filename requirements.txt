@@ -1,5 +1,0 @@
-aiopg
-alembic
-fastapi
-psycopg2-binary
-uvicorn

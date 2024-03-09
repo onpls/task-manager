@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "knowdroids-task"
+version = "0.1.0"
+description = "FastApi application"
+authors = ["Ondrej Pleskac <pleskacondrej@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aiopg = "^1.4.0"
+alembic = "^1.13.1"
+fastapi = "^0.110.0"
+psycopg-binary = "^3.1.18"
+uvicorn = "^0.27.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
