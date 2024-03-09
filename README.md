@@ -1,6 +1,6 @@
 # Task-manager
 
-## Requrements
+## Requirements
 - docker
 
 ## Running the Application

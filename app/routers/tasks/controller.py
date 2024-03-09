@@ -7,7 +7,7 @@ from .validation import Task, ResponseBodyPost, ResponseBodyGet
 async def handle_post(task: Task, request: Request) -> ResponseBodyPost:
     async with request.app.state.conn_pool.acquire() as conn:
         async with conn.cursor() as cursor:
-            await task.save(cursor, "tasks")
+            await task.save(cursor, table="tasks", pk="id")
 
     return JSONResponse(
         status_code=200,
@@ -19,7 +19,7 @@ async def handle_post(task: Task, request: Request) -> ResponseBodyPost:
 async def handle_get(request: Request) -> ResponseBodyGet:
     async with request.app.state.conn_pool.acquire() as conn:
         async with conn.cursor() as cursor:
-            await cursor.execute('SELECT * FROM tasks;')
+            await cursor.execute("SELECT * FROM tasks;")
             tasks = await Task.from_cursor(cursor)
 
     return JSONResponse(
