@@ -14,13 +14,13 @@ async def handle_post(body: Task) -> ResponseBodyPost:
 
 async def handle_get(request: Request) -> ResponseBodyGet:
     async with request.app.state.conn_pool.acquire() as conn:
-        async with conn.cursor() as cur:
-            await cur.execute('SELECT * FROM tasks;')
-            data = [row async for row in cur]
+        async with conn.cursor() as cursor:
+            await cursor.execute('SELECT * FROM tasks;')
+            tasks = Task.from_cursor(cursor)
 
     return JSONResponse(
         status_code=200,
         content={
             "success": True,
-            "data": data
+            "data": [task.model_dump() for task in tasks]
         })
