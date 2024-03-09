@@ -10,7 +10,7 @@ class Task(BaseDataModel):
     completion_status: Optional[bool] = False
 
 
-class RequestBodyPost(Task):
+class RequestBody(Task):
     pass
 
 

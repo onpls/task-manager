@@ -6,7 +6,7 @@ class BaseDataModel(BaseModel):
 
     @classmethod
     async def from_cursor(cls, cursor: Cursor, limit: int = None) -> list:
-        rows = await cursor.fetchall()
+        rows = await cursor.fetchmany(limit)
         columns = [desc[0] for desc in cursor.description]
         dict_results = [dict(zip(columns, row)) for row in rows]
         model_objects = [cls(**item) for item in dict_results]

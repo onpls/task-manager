@@ -2,10 +2,12 @@ FROM python:3.11.6-slim
 
 WORKDIR /usr/src
 
-COPY pyproject.toml poetry.lock /usr/src
+COPY pyproject.toml poetry.lock ./
 RUN pip install poetry
 RUN poetry install
 
-COPY app/ ./app/
+COPY alembic/ ./alembic/
+COPY alembic.ini ./alembic.ini
 
-CMD poetry run python -m app
+COPY app/ ./app/
+CMD poetry run alembic upgrade head && poetry run python -m app

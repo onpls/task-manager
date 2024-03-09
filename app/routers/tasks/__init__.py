@@ -1,15 +1,14 @@
 from fastapi import APIRouter, Request
 
 from .controller import handle_get, handle_post
-from .validation import RequestBodyPost, ResponseBodyPost, ResponseBodyGet
+from .validation import RequestBody, ResponseBodyPost, ResponseBodyGet
 
 
 router = APIRouter(prefix='/task')
 
 
 @router.post('')
-async def create_task(
-        body: RequestBodyPost, request: Request) -> ResponseBodyPost:
+async def create_task(body: RequestBody, request: Request) -> ResponseBodyPost:
     return await handle_post(body, request)
 
 
