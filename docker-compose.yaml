@@ -4,12 +4,13 @@ services:
     build:
       context: ./
       dockerfile: ./Dockerfile
+      args:
+        DB_URI: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
     ports:
       - ${PORT}:${PORT}
     environment:
       PORT: ${PORT}
       LOG_LEVEL: ${LOG_LEVEL}
-      DB_URI: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
     depends_on:
       postgres:
         condition: service_healthy
